@@ -1,23 +1,20 @@
+//Server defs
 const express = require('express');
-const app = express();
 const port = 8000;
-const bodyParser = require('body-parser');
-const routes = require('./routes/routes');
 
-// Use Node.js body parsing middleware
+//Requirements
+const app = express();
+const bodyParser = require('body-parser');
+
+//Routes
+const routes = require('./routes/routes');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true,
 }));
-
-//app.get('/', (request, response) => {
-//    console.log(`URL: ${request.url}`);
-//    response.send({
-//	message: 'Hello, Server!'}
-//    );
-//});
 routes(app);
 
+//Launch instance
 app.listen(port, () => {
   console.log('Listening on port ' + port);
 });
